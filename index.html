@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tiến Dương – Portfolio</title>
+    <meta name="description" content="Portfolio cá nhân: kỹ năng, dự án, liên hệ." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚡️</text></svg>">
+    <style>
+      :root{--bg:#0b0b10;--text:#f4f4f5;--muted:#a1a1aa;--card:#11121a;--brand:#ffd34d;--accent:#22d3ee}
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;color:var(--text);background:radial-gradient(1200px 400px at 20% -10%,rgba(255,211,77,.12),transparent),radial-gradient(1000px 500px at 120% 10%,rgba(34,211,238,.12),transparent),var(--bg)}
+      a{color:inherit}
+      .container{max-width:1000px;margin:0 auto;padding:24px}
+      header{position:sticky;top:0;backdrop-filter:saturate(150%) blur(8px);background:rgba(11,11,16,.6);border-bottom:1px solid #1f2430;z-index:50}
+      .nav{display:flex;align-items:center;justify-content:space-between}
+      .brand{font-weight:800;letter-spacing:.3px}
+      .links a{margin-left:16px;text-decoration:none;color:var(--muted)}
+      .links a:hover{color:var(--text)}
+      .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:56px 0}
+      .title{font-size:40px;line-height:1.15;margin:0 0 8px}
+      .subtitle{color:var(--muted);margin:0 0 16px}
+      .cta{display:flex;gap:12px;margin-top:16px}
+      .btn{padding:10px 16px;border-radius:12px;border:1px solid #262b3a;background:#141827;color:#e5e7eb;text-decoration:none}
+      .btn.primary{background:linear-gradient(180deg,var(--brand),#ffb703);color:#111}
+      .card{background:linear-gradient(180deg,#0f1220,#0d1020);border:1px solid #1e2534;border-radius:16px;padding:18px}
+      .grid{display:grid;gap:18px}
+      .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+      h2{font-size:26px;margin:14px 0 14px}
+      .muted{color:var(--muted)}
+      .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid #2a3142;color:#cbd5e1;margin:4px 6px 0 0;font-size:13px}
+      .footer{border-top:1px solid #1f2430;color:#9ca3af;padding:24px 0;margin-top:40px}
+      .fakeimg{height:140px;border-radius:12px;background:linear-gradient(135deg,#1f2430,#141827);border:1px dashed #2b3244;display:flex;align-items:center;justify-content:center;color:#94a3b8}
+      @media (max-width:860px){.hero{grid-template-columns:1fr}.links{display:none}.grid.cols-3{grid-template-columns:1fr}.grid.cols-2{grid-template-columns:1fr}}
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand">Tiến Dương</div>
+        <nav class="links">
+          <a href="#projects">Dự án</a>
+          <a href="#skills">Kỹ năng</a>
+          <a href="#contact">Liên hệ</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div>
+          <h1 class="title">Full‑stack Developer</h1>
+          <p class="subtitle">Mình xây các web app nhanh, gọn, đẹp – ưu tiên trải nghiệm và hiệu năng.</p>
+          <div class="cta">
+            <a class="btn primary" href="#contact">Liên hệ</a>
+            <a class="btn" href="#projects">Xem dự án</a>
+          </div>
+        </div>
+        <div class="card">
+          <b>Mình làm gì?</b>
+          <ul class="muted">
+            <li>• Thiết kế & phát triển web (HTML/CSS/JS)</li>
+            <li>• Java (JSP/Servlet) + SQL Server</li>
+            <li>• Tối ưu UX/UI & SEO cơ bản</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>🌟 Dự án nổi bật</h2>
+        <div class="grid cols-3">
+          <div class="card">
+            <div class="fakeimg">Ảnh dự án</div>
+            <h3>FPTU Events & Blog</h3>
+            <p class="muted">Cổng sự kiện + blog, lịch học, tag…</p>
+            <p>
+              <a class="btn" href="#">Xem live</a>
+              <a class="btn" href="#">Mã nguồn</a>
+            </p>
+          </div>
+          <div class="card">
+            <div class="fakeimg">Ảnh dự án</div>
+            <h3>Quiz Training</h3>
+            <p class="muted">Hệ thống quiz + leaderboard.</p>
+            <p>
+              <a class="btn" href="#">Xem live</a>
+              <a class="btn" href="#">Mã nguồn</a>
+            </p>
+          </div>
+          <div class="card">
+            <div class="fakeimg">Ảnh dự án</div>
+            <h3>Portfolio</h3>
+            <p class="muted">Trang giới thiệu cá nhân.</p>
+            <p>
+              <a class="btn" href="#">Xem live</a>
+              <a class="btn" href="#">Mã nguồn</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>🧰 Kỹ năng</h2>
+        <div class="card">
+          <span class="pill">HTML</span>
+          <span class="pill">CSS</span>
+          <span class="pill">JavaScript (basic)</span>
+          <span class="pill">Java (JSP/Servlet)</span>
+          <span class="pill">SQL Server</span>
+          <span class="pill">NetBeans</span>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>📮 Liên hệ</h2>
+        <div class="grid cols-2">
+          <form class="card" onsubmit="sendMail(event)">
+            <label>Tên<br /><input required name="name" style="width:100%;padding:10px;border-radius:10px;border:1px solid #2b3244;background:#0c1020;color:#e5e7eb"></label><br />
+            <label>Email<br /><input required type="email" name="email" style="width:100%;padding:10px;border-radius:10px;border:1px solid #2b3244;background:#0c1020;color:#e5e7eb"></label><br />
+            <label>Nội dung<br /><textarea required name="message" rows="5" style="width:100%;padding:10px;border-radius:10px;border:1px solid #2b3244;background:#0c1020;color:#e5e7eb"></textarea></label><br />
+            <button class="btn primary" type="submit">Gửi</button>
+          </form>
+          <div class="card">
+            <b>Thông tin</b>
+            <p class="muted">Email: you@example.com<br/>Địa điểm: HCMC, Viet Nam</p>
+            <p class="muted">Thay email/địa chỉ trong mã nguồn cho đúng của bạn.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="footer">
+        <div>© <span id="y"></span> Tiến Dương — All rights reserved.</div>
+      </section>
+    </main>
+
+    <script>
+      document.getElementById('y').textContent = new Date().getFullYear();
+      function sendMail(e){
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const name = fd.get('name');
+        const email = fd.get('email');
+        const msg = fd.get('message');
+        const to = 'you@example.com'; // ← sửa thành email của bạn
+        const body = encodeURIComponent(`${msg}\n\n— ${name} (${email})`);
+        window.location.href = `mailto:${to}?subject=Li%C3%AAn%20h%E1%BB%87%20t%E1%BB%AB%20Portfolio&body=${body}`;
+      }
+    </script>
+  </body>
+</html>
