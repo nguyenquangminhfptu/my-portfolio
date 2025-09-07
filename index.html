@@ -7,33 +7,189 @@
     <meta name="description" content="Portfolio cá nhân: kỹ năng, dự án, liên hệ." />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚡️</text></svg>">
     <style>
-      :root{--bg:#0b0b10;--text:#f4f4f5;--muted:#a1a1aa;--card:#11121a;--brand:#ffd34d;--accent:#22d3ee}
-      *{box-sizing:border-box}
-      html,body{height:100%}
-      body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;color:var(--text);background:radial-gradient(1200px 400px at 20% -10%,rgba(255,211,77,.12),transparent),radial-gradient(1000px 500px at 120% 10%,rgba(34,211,238,.12),transparent),var(--bg)}
-      a{color:inherit}
-      .container{max-width:1000px;margin:0 auto;padding:24px}
-      header{position:sticky;top:0;backdrop-filter:saturate(150%) blur(8px);background:rgba(11,11,16,.6);border-bottom:1px solid #1f2430;z-index:50}
-      .nav{display:flex;align-items:center;justify-content:space-between}
-      .brand{font-weight:800;letter-spacing:.3px}
-      .links a{margin-left:16px;text-decoration:none;color:var(--muted)}
-      .links a:hover{color:var(--text)}
-      .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:56px 0}
-      .title{font-size:40px;line-height:1.15;margin:0 0 8px}
-      .subtitle{color:var(--muted);margin:0 0 16px}
-      .cta{display:flex;gap:12px;margin-top:16px}
-      .btn{padding:10px 16px;border-radius:12px;border:1px solid #262b3a;background:#141827;color:#e5e7eb;text-decoration:none}
-      .btn.primary{background:linear-gradient(180deg,var(--brand),#ffb703);color:#111}
-      .card{background:linear-gradient(180deg,#0f1220,#0d1020);border:1px solid #1e2534;border-radius:16px;padding:18px}
-      .grid{display:grid;gap:18px}
-      .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-      .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-      h2{font-size:26px;margin:14px 0 14px}
-      .muted{color:var(--muted)}
-      .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid #2a3142;color:#cbd5e1;margin:4px 6px 0 0;font-size:13px}
-      .footer{border-top:1px solid #1f2430;color:#9ca3af;padding:24px 0;margin-top:40px}
-      .fakeimg{height:140px;border-radius:12px;background:linear-gradient(135deg,#1f2430,#141827);border:1px dashed #2b3244;display:flex;align-items:center;justify-content:center;color:#94a3b8}
-      @media (max-width:860px){.hero{grid-template-columns:1fr}.links{display:none}.grid.cols-3{grid-template-columns:1fr}.grid.cols-2{grid-template-columns:1fr}}
+      :root {
+        --bg: #0b0b10;
+        --text: #f4f4f5;
+        --muted: #a1a1aa;
+        --card: #11121a;
+        --brand: #ffd34d;
+        --accent: #22d3ee;
+        --border: #1f2430;
+        --input-bg: #0c1020;
+        --input-border: #2b3244;
+      }
+      
+      [data-theme="light"] {
+        --bg: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --card: #f9fafb;
+        --brand: #f59e0b;
+        --accent: #06b6d4;
+        --border: #e5e7eb;
+        --input-bg: #ffffff;
+        --input-border: #d1d5db;
+      }
+      
+      * { box-sizing: border-box }
+      html, body { height: 100% }
+      body {
+        margin: 0;
+        font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+        color: var(--text);
+        background: radial-gradient(1200px 400px at 20% -10%, rgba(255,211,77,.12), transparent),
+                    radial-gradient(1000px 500px at 120% 10%, rgba(34,211,238,.12), transparent),
+                    var(--bg);
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+      
+      a { color: inherit }
+      .container { max-width: 1000px; margin: 0 auto; padding: 24px }
+      
+      header {
+        position: sticky;
+        top: 0;
+        backdrop-filter: saturate(150%) blur(8px);
+        background: rgba(11,11,16,.6);
+        border-bottom: 1px solid var(--border);
+        z-index: 50;
+        transition: background 0.3s ease, border-color 0.3s ease;
+      }
+      
+      [data-theme="light"] header {
+        background: rgba(255,255,255,.8);
+      }
+      
+      .nav { display: flex; align-items: center; justify-content: space-between }
+      .brand { font-weight: 800; letter-spacing: .3px }
+      
+      .nav-controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      
+      .theme-toggle, .lang-toggle {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 12px;
+        color: var(--text);
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .theme-toggle:hover, .lang-toggle:hover {
+        background: var(--accent);
+        color: white;
+      }
+      
+      .links a {
+        margin-left: 16px;
+        text-decoration: none;
+        color: var(--muted);
+        transition: color 0.3s ease;
+      }
+      .links a:hover { color: var(--text) }
+      
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr .8fr;
+        gap: 28px;
+        align-items: center;
+        padding: 56px 0;
+      }
+      .title { font-size: 40px; line-height: 1.15; margin: 0 0 8px }
+      .subtitle { color: var(--muted); margin: 0 0 16px }
+      .cta { display: flex; gap: 12px; margin-top: 16px }
+      
+      .btn {
+        padding: 10px 16px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--text);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .btn.primary {
+        background: linear-gradient(180deg, var(--brand), #ffb703);
+        color: #111;
+      }
+      
+      .card {
+        background: linear-gradient(180deg, var(--card), var(--card));
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px;
+        transition: all 0.3s ease;
+      }
+      
+      .grid { display: grid; gap: 18px }
+      .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+      .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+      h2 { font-size: 26px; margin: 14px 0 14px }
+      .muted { color: var(--muted) }
+      
+      .pill {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--text);
+        margin: 4px 6px 0 0;
+        font-size: 13px;
+        transition: all 0.3s ease;
+      }
+      
+      .footer {
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        padding: 24px 0;
+        margin-top: 40px;
+        transition: border-color 0.3s ease, color 0.3s ease;
+      }
+      
+      .fakeimg {
+        height: 140px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--card), var(--bg));
+        border: 1px dashed var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        transition: all 0.3s ease;
+      }
+      
+      input, textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid var(--input-border);
+        background: var(--input-bg);
+        color: var(--text);
+        transition: all 0.3s ease;
+      }
+      
+      input:focus, textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+      }
+      
+      @media (max-width: 860px) {
+        .hero { grid-template-columns: 1fr }
+        .links { display: none }
+        .grid.cols-3 { grid-template-columns: 1fr }
+        .grid.cols-2 { grid-template-columns: 1fr }
+        .nav-controls { gap: 8px }
+        .theme-toggle, .lang-toggle { padding: 6px 10px; font-size: 12px }
+      }
     </style>
   </head>
   <body>
@@ -41,68 +197,78 @@
       <div class="container nav">
         <div class="brand">Nguyễn Quang Minh</div>
         <nav class="links">
-          <a href="#projects">Dự án</a>
-          <a href="#skills">Kỹ năng</a>
-          <a href="#contact">Liên hệ</a>
+          <a href="#projects" data-vi="Dự án" data-en="Projects">Dự án</a>
+          <a href="#skills" data-vi="Kỹ năng" data-en="Skills">Kỹ năng</a>
+          <a href="#contact" data-vi="Liên hệ" data-en="Contact">Liên hệ</a>
         </nav>
+        <div class="nav-controls">
+          <button class="theme-toggle" onclick="toggleTheme()">
+            <span id="theme-icon">��</span>
+            <span id="theme-text" data-vi="Tối" data-en="Dark">Tối</span>
+          </button>
+          <button class="lang-toggle" onclick="toggleLanguage()">
+            <span id="lang-icon">🇻��</span>
+            <span id="lang-text" data-vi="VI" data-en="EN">VI</span>
+          </button>
+        </div>
       </div>
     </header>
 
     <main class="container">
       <section class="hero">
         <div>
-          <h1 class="title">Full‑stack Developer</h1>
-          <p class="subtitle">Mình xây các web app nhanh, gọn, đẹp – ưu tiên trải nghiệm và hiệu năng.</p>
+          <h1 class="title" data-vi="Full‑stack Developer" data-en="Full‑stack Developer">Full‑stack Developer</h1>
+          <p class="subtitle" data-vi="Mình xây các web app nhanh, gọn, đẹp – ưu tiên trải nghiệm và hiệu năng." data-en="I build fast, clean, beautiful web apps – prioritizing experience and performance.">Mình xây các web app nhanh, gọn, đẹp – ưu tiên trải nghiệm và hiệu năng.</p>
           <div class="cta">
-            <a class="btn primary" href="#contact">Liên hệ</a>
-            <a class="btn" href="#projects">Xem dự án</a>
+            <a class="btn primary" href="#contact" data-vi="Liên hệ" data-en="Contact">Liên hệ</a>
+            <a class="btn" href="#projects" data-vi="Xem dự án" data-en="View Projects">Xem dự án</a>
           </div>
         </div>
         <div class="card">
-          <b>Mình làm gì?</b>
+          <b data-vi="Mình làm gì?" data-en="What I do?">Mình làm gì?</b>
           <ul class="muted">
-            <li>• Thiết kế & phát triển web (HTML/CSS/JS)</li>
-            <li>• Java (JSP/Servlet) + SQL Server</li>
-            <li>• Tối ưu UX/UI & SEO cơ bản</li>
+            <li data-vi="• Thiết kế & phát triển web (HTML/CSS/JS)" data-en="• Web design & development (HTML/CSS/JS)">• Thiết kế & phát triển web (HTML/CSS/JS)</li>
+            <li data-vi="• Java (JSP/Servlet) + SQL Server" data-en="• Java (JSP/Servlet) + SQL Server">• Java (JSP/Servlet) + SQL Server</li>
+            <li data-vi="• Tối ưu UX/UI & SEO cơ bản" data-en="• Basic UX/UI & SEO optimization">• Tối ưu UX/UI & SEO cơ bản</li>
           </ul>
         </div>
       </section>
 
       <section id="projects">
-        <h2>🌟 Dự án nổi bật</h2>
+        <h2 data-vi="🌟 Dự án nổi bật" data-en="🌟 Featured Projects">🌟 Dự án nổi bật</h2>
         <div class="grid cols-3">
           <div class="card">
-            <div class="fakeimg">Ảnh dự án</div>
+            <div class="fakeimg" data-vi="Ảnh dự án" data-en="Project Image">Ảnh dự án</div>
             <h3>FPTU Events & Blog</h3>
-            <p class="muted">Cổng sự kiện + blog, lịch học, tag…</p>
+            <p class="muted" data-vi="Cổng sự kiện + blog, lịch học, tag…" data-en="Event portal + blog, schedule, tags...">Cổng sự kiện + blog, lịch học, tag…</p>
             <p>
-              <a class="btn" href="#">Xem live</a>
-              <a class="btn" href="#">Mã nguồn</a>
+              <a class="btn" href="#" data-vi="Xem live" data-en="View Live">Xem live</a>
+              <a class="btn" href="#" data-vi="Mã nguồn" data-en="Source Code">Mã nguồn</a>
             </p>
           </div>
           <div class="card">
-            <div class="fakeimg">Ảnh dự án</div>
+            <div class="fakeimg" data-vi="Ảnh dự án" data-en="Project Image">Ảnh dự án</div>
             <h3>Quiz Training</h3>
-            <p class="muted">Hệ thống quiz + leaderboard.</p>
+            <p class="muted" data-vi="Hệ thống quiz + leaderboard." data-en="Quiz system + leaderboard.">Hệ thống quiz + leaderboard.</p>
             <p>
-              <a class="btn" href="#">Xem live</a>
-              <a class="btn" href="#">Mã nguồn</a>
+              <a class="btn" href="#" data-vi="Xem live" data-en="View Live">Xem live</a>
+              <a class="btn" href="#" data-vi="Mã nguồn" data-en="Source Code">Mã nguồn</a>
             </p>
           </div>
           <div class="card">
-            <div class="fakeimg">Ảnh dự án</div>
+            <div class="fakeimg" data-vi="Ảnh dự án" data-en="Project Image">Ảnh dự án</div>
             <h3>Portfolio</h3>
-            <p class="muted">Trang giới thiệu cá nhân.</p>
+            <p class="muted" data-vi="Trang giới thiệu cá nhân." data-en="Personal introduction page.">Trang giới thiệu cá nhân.</p>
             <p>
-              <a class="btn" href="#">Xem live</a>
-              <a class="btn" href="#">Mã nguồn</a>
+              <a class="btn" href="#" data-vi="Xem live" data-en="View Live">Xem live</a>
+              <a class="btn" href="#" data-vi="Mã nguồn" data-en="Source Code">Mã nguồn</a>
             </p>
           </div>
         </div>
       </section>
 
       <section id="skills">
-        <h2>🧰 Kỹ năng</h2>
+        <h2 data-vi="�� Kỹ năng" data-en="�� Skills">🧰 Kỹ năng</h2>
         <div class="card">
           <span class="pill">HTML</span>
           <span class="pill">CSS</span>
@@ -114,38 +280,99 @@
       </section>
 
       <section id="contact">
-        <h2>📮 Liên hệ</h2>
+        <h2 data-vi="�� Liên hệ" data-en="📮 Contact">📮 Liên hệ</h2>
         <div class="grid cols-2">
           <form class="card" onsubmit="sendMail(event)">
-            <label>Tên<br /><input required name="name" style="width:100%;padding:10px;border-radius:10px;border:1px solid #2b3244;background:#0c1020;color:#e5e7eb"></label><br />
-            <label>Email<br /><input required type="email" name="email" style="width:100%;padding:10px;border-radius:10px;border:1px solid #2b3244;background:#0c1020;color:#e5e7eb"></label><br />
-            <label>Nội dung<br /><textarea required name="message" rows="5" style="width:100%;padding:10px;border-radius:10px;border:1px solid #2b3244;background:#0c1020;color:#e5e7eb"></textarea></label><br />
-            <button class="btn primary" type="submit">Gửi</button>
+            <label data-vi="Tên" data-en="Name">Tên<br /><input required name="name"></label><br />
+            <label data-vi="Email" data-en="Email">Email<br /><input required type="email" name="email"></label><br />
+            <label data-vi="Nội dung" data-en="Message">Nội dung<br /><textarea required name="message" rows="5"></textarea></label><br />
+            <button class="btn primary" type="submit" data-vi="Gửi" data-en="Send">Gửi</button>
           </form>
           <div class="card">
-            <b>Thông tin</b>
-            <p class="muted">Email: techminhfptu@gmail.com<br/>Địa điểm: Da Nang, Viet Nam</p>
-            
+            <b data-vi="Thông tin" data-en="Information">Thông tin</b>
+            <p class="muted" data-vi="Email: techminhfptu@gmail.com<br/>Địa điểm: Da Nang, Viet Nam" data-en="Email: techminhfptu@gmail.com<br/>Location: Da Nang, Viet Nam">Email: techminhfptu@gmail.com<br/>Địa điểm: Da Nang, Viet Nam</p>
           </div>
         </div>
       </section>
 
       <section class="footer">
-        <div>© <span id="y"></span> Nguyễn Quang Minh — All rights reserved.</div>
+        <div data-vi="© Nguyễn Quang Minh — All rights reserved." data-en="© Nguyễn Quang Minh — All rights reserved.">© <span id="y"></span> Nguyễn Quang Minh — All rights reserved.</div>
       </section>
     </main>
 
     <script>
+      // Initialize theme and language from localStorage
+      let currentTheme = localStorage.getItem('theme') || 'dark';
+      let currentLang = localStorage.getItem('language') || 'vi';
+      
+      // Apply saved theme and language
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      updateLanguage(currentLang);
+      updateThemeUI(currentTheme);
+      
+      function toggleTheme() {
+        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        localStorage.setItem('theme', currentTheme);
+        updateThemeUI(currentTheme);
+      }
+      
+      function updateThemeUI(theme) {
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+        
+        if (theme === 'dark') {
+          themeIcon.textContent = '🌙';
+          themeText.textContent = currentLang === 'vi' ? 'Tối' : 'Dark';
+        } else {
+          themeIcon.textContent = '☀️';
+          themeText.textContent = currentLang === 'vi' ? 'Sáng' : 'Light';
+        }
+      }
+      
+      function toggleLanguage() {
+        currentLang = currentLang === 'vi' ? 'en' : 'vi';
+        localStorage.setItem('language', currentLang);
+        updateLanguage(currentLang);
+        updateThemeUI(currentTheme);
+      }
+      
+      function updateLanguage(lang) {
+        const elements = document.querySelectorAll('[data-vi][data-en]');
+        elements.forEach(element => {
+          element.textContent = element.getAttribute(`data-${lang}`);
+        });
+        
+        // Update document language
+        document.documentElement.lang = lang;
+        
+        // Update language toggle button
+        const langIcon = document.getElementById('lang-icon');
+        const langText = document.getElementById('lang-text');
+        
+        if (lang === 'vi') {
+          langIcon.textContent = '��🇳';
+          langText.textContent = 'VI';
+        } else {
+          langIcon.textContent = '��🇸';
+          langText.textContent = 'EN';
+        }
+      }
+      
+      // Set current year
       document.getElementById('y').textContent = new Date().getFullYear();
-      function sendMail(e){
+      
+      function sendMail(e) {
         e.preventDefault();
         const fd = new FormData(e.target);
         const name = fd.get('name');
         const email = fd.get('email');
         const msg = fd.get('message');
-        const to = 'you@example.com'; // ← sửa thành email của bạn
+        const to = 'techminhfptu@gmail.com';
+        
+        const subject = currentLang === 'vi' ? 'Liên hệ từ Portfolio' : 'Contact from Portfolio';
         const body = encodeURIComponent(`${msg}\n\n— ${name} (${email})`);
-        window.location.href = `mailto:${to}?subject=Li%C3%AAn%20h%E1%BB%87%20t%E1%BB%AB%20Portfolio&body=${body}`;
+        window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${body}`;
       }
     </script>
   </body>
